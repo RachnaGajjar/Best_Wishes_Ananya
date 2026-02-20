@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Wishes Ananya! 🎀✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --pastel-pink: #FFB6D9;
+            --pastel-lavender: #D4BBDD;
+            --pastel-mint: #B8E6D5;
+            --pastel-yellow: #FFF4B7;
+            --pastel-peach: #FFDAC1;
+            --pastel-blue: #B4E7F5;
+            --soft-pink: #FFC4E1;
+            --cream: #FFF8F0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #FFF0F8 0%, #FFF8F0 25%, #F0F8FF 50%, #FFF0F8 75%, #FFF8F0 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .font-handwritten { font-family: 'Caveat', cursive; }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            opacity: 0.35;
+            animation: float 8s ease-in-out infinite;
+            
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.35; }
+            50% { transform: translateY(-25px) rotate(8deg); opacity: 0.5; }
+        }
+
+        /* ===== HERO HEADING ANIMATIONS ===== */
+
+        /* Letter-by-letter animation for "Give It Your Best," */
+        .hero-title {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(1.8rem, 5vw, 3.2rem);
+            color: var(--pastel-pink);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.8), 4px 4px 10px rgba(255,182,217,0.3);
+            line-height: 1.2;
+            font-weight: 400;
+            overflow: hidden;
+        }
+
+        .title-letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px) rotate(-8deg);
+            animation: letterDrop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .title-space {
+            display: inline-block;
+            width: 0.35em;
+        }
+
+        @keyframes letterDrop {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        /* Name with morphing rainbow shimmer */
+        .hero-name-container {
+            position: relative;
+            display: inline-block;
+            margin: 0.8rem 0 1.2rem;
+        }
+
+        .hero-name {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(4rem, 13vw, 7rem);
+            font-weight: 700;
+            background: linear-gradient(90deg, #FFB6D9, #D4BBDD, #B8E6D5, #FFDAC1, #FFB6D9);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: nameReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s both, shimmer 4s linear 3.5s infinite;
+            display: inline-block;
+            position: relative;
+            letter-spacing: -2px;
+            filter: drop-shadow(0 4px 15px rgba(212,187,221,0.5));
+        }
+
+        @keyframes nameReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.3) rotate(-15deg);
+                filter: blur(20px) drop-shadow(0 4px 15px rgba(212,187,221,0.5));
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+                filter: blur(0) drop-shadow(0 4px 15px rgba(212,187,221,0.5));
+            }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
+        /* Decorative elements - staggered pop-in */
+        .name-decor {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: decorPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, sparkle 2.5s ease-in-out infinite;
+        }
+
+        @keyframes decorPop {
+            to { opacity: 1; }
+        }
+
+        .name-decor-1 { top: -20px; left: -40px; animation-delay: 3s, 3s; }
+        .name-decor-2 { top: -25px; right: -40px; animation-delay: 3.2s, 3.2s; }
+        .name-decor-3 { bottom: -20px; left: -35px; animation-delay: 3.4s, 3.4s; }
+        .name-decor-4 { bottom: -25px; right: -35px; animation-delay: 3.6s, 3.6s; }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.3) rotate(180deg); }
+        }
+
+        /* Tagline typewriter */
+        .hero-tagline {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: #9B7BA0;
+            font-weight: 500;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+            opacity: 0;
+            animation: taglineSlide 0.8s ease-out 3.8s forwards;
+            overflow: hidden;
+        }
+
+        @keyframes taglineSlide {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-emojis {
+            margin-top: 1.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 2rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease-out 4.2s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-emojis span {
+            display: inline-block;
+            animation: bounce-gentle 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 3px 8px rgba(255,182,217,0.3));
+            transition: transform 0.2s ease;
+            
+        }
+        .hero-emojis span:hover {
+            transform: scale(1.5) rotate(20deg) !important;
+        }
+
+        /* ===== INTERACTIVE ELEMENTS ===== */
+
+        /* Click-to-reveal lucky tip */
+        .lucky-tip-section {
+            text-align: center;
+            margin: 0.5rem auto 2rem;
+        }
+
+        .tip-btn {
+            background: linear-gradient(135deg, rgba(255,182,217,0.3), rgba(212,187,221,0.3));
+            border: 2px dashed var(--pastel-lavender);
+            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #9B7BA0;
+            
+            transition: all 0.3s ease;
+        }
+        .tip-btn:hover {
+            background: linear-gradient(135deg, rgba(255,182,217,0.5), rgba(212,187,221,0.5));
+            transform: scale(1.05);
+        }
+
+        .tip-reveal {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.8);
+            border-radius: 1rem;
+            border-left: 4px solid var(--pastel-pink);
+            font-size: 1.2rem;
+            color: #4A4A4A;
+            animation: fadeUp 0.5s ease-out;
+            max-width: 500px;
+            margin: 1rem auto 0;
+        }
+
+        /* ===== MOOD TRACKER ===== */
+        .mood-tracker {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+        .mood-label {
+            font-size: 1.15rem;
+            color: #9B7BA0;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .mood-options {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .mood-btn {
+            font-size: 2.5rem;
+            background: none;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            width: 4.5rem;
+            height: 4.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+        .mood-btn:hover {
+            transform: scale(1.3);
+            border-color: var(--pastel-pink);
+            background: rgba(255,182,217,0.2);
+        }
+        .mood-btn.selected {
+            transform: scale(1.2);
+            border-color: var(--pastel-pink);
+            background: rgba(255,182,217,0.3);
+            animation: moodSelected 0.4s ease-out;
+        }
+        @keyframes moodSelected {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1.2); }
+        }
+        .mood-response {
+            margin-top: 1rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            color: #9B7BA0;
+            min-height: 2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        .mood-response.visible { opacity: 1; }
+
+        /* ===== SCRATCH & REVEAL ===== */
+        .scratch-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .scratch-card {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.9);
+            box-shadow: 0 10px 40px rgba(255,182,217,0.3);
+            
+        }
+        .scratch-reveal {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255,244,183,0.9), rgba(255,218,193,0.9));
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            color: #4A4A4A;
+            text-align: center;
+            padding: 1rem;
+            gap: 0.5rem;
+        }
+        .scratch-canvas {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+        }
+        .scratch-hint {
+            text-align: center;
+            margin-top: 0.8rem;
+            color: #9B7BA0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .scratch-reset {
+            display: none;
+            margin: 0.8rem auto 0;
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-mint));
+            border: none;
+            border-radius: 50px;
+            padding: 0.6rem 1.5rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: #4A4A4A;
+            
+            transition: transform 0.2s ease;
+        }
+        .scratch-reset:hover { transform: scale(1.05); }
+
+        /* ===== STUDY DICE ===== */
+        .dice-section { text-align: center; }
+        .dice-display {
+            font-size: 5rem;
+            display: inline-block;
+            transition: transform 0.1s ease;
+            filter: drop-shadow(0 5px 15px rgba(255,182,217,0.3));
+            
+        }
+        .dice-display.rolling {
+            animation: roll 0.5s ease-out;
+        }
+        @keyframes roll {
+            0% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(0.8); }
+            75% { transform: rotate(270deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        .dice-result {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: #9B7BA0;
+            margin-top: 0.8rem;
+            min-height: 2rem;
+        }
+        .dice-btn {
+            background: linear-gradient(135deg, var(--pastel-mint), var(--pastel-blue));
+            border: 3px solid rgba(255,255,255,0.9);
+            border-radius: 50px;
+            padding: 0.8rem 2.5rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: #4A4A4A;
+            
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 5px 20px rgba(184,230,213,0.4);
+        }
+        .dice-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(184,230,213,0.5);
+        }
+        .dice-btn:active { transform: scale(0.95); }
+
+        /* ===== GENERAL LAYOUT ===== */
+        @keyframes bounce-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(255,182,217,0.4)); }
+            50% { transform: scale(1.02); filter: drop-shadow(0 0 30px rgba(255,182,217,0.6)); }
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes party-pop {
+            0%, 100% { transform: rotate(-8deg) scale(1); }
+            50% { transform: rotate(8deg) scale(1.1); }
+        }
+
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; padding: 1rem 1.5rem 1.6rem; }
+        section:nth-child(3) { animation-delay: 0.3s; padding: 2.5rem 1.5rem 0.8rem; }
+        section:nth-child(4) { animation-delay: 0.4s; padding: 3.5rem 1.5rem 2rem; }
+        section:nth-child(5) { animation-delay: 0.5s; padding: 1.8rem 1.5rem 1.2rem; }
+        section:nth-child(6) { animation-delay: 0.6s; padding: 1.2rem 1.5rem 1.8rem; }
+        section:nth-child(7) { animation-delay: 0.7s; padding: 4rem 1rem; }
+
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+        }
+        .hero-content { position: relative; z-index: 10; }
+
+        .party-popper {
+            font-size: clamp(3rem, 8vw, 4.5rem);
+            margin-bottom: 0.8rem;
+            animation: party-pop 2s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 5px 15px rgba(255,182,217,0.3));
+        }
+
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2.2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--pastel-pink);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 0px rgba(255,255,255,0.8);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--pastel-pink), var(--pastel-lavender));
+            margin: 0.8rem auto;
+            border-radius: 2px;
+        }
+
+        /* ===== QUOTES CAROUSEL ===== */
+        .quotes-carousel {
+            max-width: 650px;
+            margin: 0 auto;
+            position: relative;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quote-card {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.8rem;
+            border-radius: 1.8rem;
+            border: 3px solid rgba(255,255,255,0.9);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(0.88) rotate(4deg);
+            backdrop-filter: blur(5px);
+        }
+        .quote-card.active {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+            z-index: 10;
+        }
+        .quote-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: bounce-gentle 2.5s ease-in-out infinite;
+        }
+        .quote-text {
+            font-size: clamp(1rem, 2.2vw, 1.25rem);
+            text-align: center;
+            font-style: italic;
+            line-height: 1.6;
+            font-weight: 600;
+            color: #4A4A4A;
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-top: 90px;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,182,217,0.4);
+            
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .dot:hover { transform: scale(1.2); }
+        .dot.active {
+            background: var(--pastel-pink);
+            transform: scale(1.3);
+        }
+
+        /* ===== MESSAGE CARD ===== */
+        .message-card {
+            max-width: 650px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            border: 3px dashed rgba(255,182,217,0.5);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        .message-tape {
+            position: absolute;
+            top: -0.9rem;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            width: 4.5rem;
+            height: 1.6rem;
+            background: var(--pastel-yellow);
+            border-radius: 0.3rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+        .message-content p {
+            font-size: clamp(1.1rem, 2.3vw, 1.35rem);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #4A4A4A;
+        }
+        .message-signature { text-align: right; margin-top: 1.5rem; }
+        .signature-text { color: var(--pastel-pink); font-size: 1.6rem; font-weight: 700; }
+
+        /* ===== CONFETTI BUTTON ===== */
+        .confetti-section { text-align: center; padding: 4rem 1rem; }
+        .confetti-button {
+            position: relative;
+            background: linear-gradient(135deg, var(--pastel-pink), var(--soft-pink));
+            color: white;
+            font-family: 'Caveat', cursive;
+            font-weight: 700;
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            padding: 1.5rem 4rem;
+            border-radius: 9999px;
+            border: 4px solid rgba(255,255,255,0.9);
+            box-shadow: 0 15px 40px rgba(255,182,217,0.4);
+            
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+        .confetti-button::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            transform: translate(-50%,-50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .confetti-button:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(255,182,217,0.6);
+        }
+        .confetti-button:hover::before { width: 500px; height: 500px; }
+        .confetti-button:active { transform: translateY(-5px) scale(1.02); }
+        .confetti-button-text { position: relative; z-index: 1; }
+
+        footer {
+            padding: 3rem 1.5rem 2.5rem;
+            text-align: center;
+        }
+        .footer-message {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--pastel-pink);
+            margin-bottom: 0.8rem;
+        }
+        .footer-text { color: #9B7BA0; font-size: 1.15rem; margin-bottom: 1.8rem; font-weight: 500; }
+        .footer-emojis { display: flex; justify-content: center; gap: 0.7rem; font-size: 1.8rem; margin-bottom: 2rem; }
+        .footer-emojis span { animation: bounce-gentle 2.5s ease-in-out infinite; display: inline-block; }
+        .footer-credit { font-size: 0.85rem; color: #9B7BA0; opacity: 0.7; }
+
+        /* BG Colors */
+        .bg-pastel-pink { background: rgba(255,182,217,0.65); }
+        .bg-pastel-lavender { background: rgba(212,187,221,0.65); }
+        .bg-pastel-mint { background: rgba(184,230,213,0.65); }
+        .bg-pastel-yellow { background: rgba(255,244,183,0.65); }
+        .bg-pastel-peach { background: rgba(255,218,193,0.65); }
+        .bg-pastel-blue { background: rgba(180,231,245,0.65); }
+
+        /* ===== WISH STREAK ===== */
+        .wish-streak {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem auto 0;
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: #9B7BA0;
+        }
+        .streak-count {
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender));
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            min-width: 3rem;
+            text-align: center;
+        }
+
+        /* ===== INTERACTIVE STARS ===== */
+        .star-burst {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9997;
+            font-size: 1rem;
+            animation: starBurst 0.8s ease-out forwards;
+        }
+        @keyframes starBurst {
+            0% { opacity: 1; transform: translate(0,0) scale(1); }
+            100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section { min-height: 80vh; }
+            .name-decor { font-size: 1.6rem; }
+            .name-decor-1, .name-decor-3 { left: -28px; }
+            .name-decor-2, .name-decor-4 { right: -28px; }
+            .quotes-carousel { height: 320px; }
+            .carousel-dots { margin-top: 340px; }
+            .mood-options { gap: 0.6rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <div class="party-popper">🎉</div>
+            <h1 class="hero-title" id="heroTitle"></h1>
+            <div class="hero-name-container">
+                <span class="name-decor name-decor-1">✨</span>
+                <span class="name-decor name-decor-2">💖</span>
+                <div class="hero-name">Ananya</div>
+                <span class="name-decor name-decor-3">🌸</span>
+                <span class="name-decor name-decor-4">⭐</span>
+            </div>
+            <p class="hero-tagline">🌟 Stay calm, stay confident, and write your success story! ✍️</p>
+            <div class="hero-emojis" id="heroEmojis"></div>
+        </div>
+    </section>
+
+    <!-- MOOD CHECK -->
+    <section>
+        <h2 class="section-title">💭 How Are You Feeling?</h2>
+        <div class="mood-tracker">
+            <p class="mood-label">Tell us your vibe right now!</p>
+            <div class="mood-options">
+                <button class="mood-btn" data-mood="nervous" title="Nervous">😰</button>
+                <button class="mood-btn" data-mood="excited" title="Excited">🤩</button>
+                <button class="mood-btn" data-mood="calm" title="Calm">😌</button>
+                <button class="mood-btn" data-mood="confident" title="Confident">💪</button>
+                <button class="mood-btn" data-mood="tired" title="Tired">😴</button>
+            </div>
+            <div class="mood-response" id="moodResponse"></div>
+        </div>
+    </section>
+
+    <!-- QUOTES CAROUSEL -->
+    <section>
+        <h2 class="section-title">💬 Words to Inspire You</h2>
+        <div class="quotes-carousel" id="quotesCarousel"></div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- PERSONAL MESSAGE -->
+    <section>
+        <h2 class="section-title">💌 A Little Note for You</h2>
+        <div class="message-card">
+            <div class="message-tape"></div>
+            <div class="message-content font-handwritten">
+                <p>Dear Ananya,</p>
+                <p>You've worked so hard to get here, and I just want you to know — I'm SO proud of you! 💖 These exams are just a small chapter in your amazing story.</p>
+                <p>Remember, no matter what happens, you are incredible just the way you are. Go in there with confidence, give it your best, and know that everyone is cheering for you! 🎉</p>
+                <p>You're going to do AMAZING things. This is just the beginning! 🌟</p>
+                <div class="message-signature">
+                    With all my love & best wishes,<br>
+                    <span class="signature-text">💝 From Di & Jiju</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRATCH & REVEAL LUCK -->
+    <section>
+        <h2 class="section-title">🍀 Scratch for Your Lucky Message!</h2>
+        <div class="scratch-section">
+            <div class="scratch-card" id="scratchCard">
+                <div class="scratch-reveal" id="scratchReveal"></div>
+                <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+            </div>
+            <p class="scratch-hint" id="scratchHint">🖐️ Scratch to reveal your lucky message!</p>
+            <button class="scratch-reset" id="scratchReset">🔄 Try Another!</button>
+        </div>
+    </section>
+
+    <!-- STUDY DICE -->
+    <section>
+        <h2 class="section-title">🎲 Roll for Exam Luck!</h2>
+        <div class="dice-section">
+            <div class="dice-display" id="diceDisplay">🎲</div>
+            <div class="dice-result" id="diceResult">Roll to get your lucky exam tip!</div>
+            <button class="dice-btn" id="diceBtn">🎲 Roll the Dice!</button>
+        </div>
+    </section>
+
+    <!-- CONFETTI BUTTON -->
+    <section class="confetti-section">
+        <h2 class="section-title">🎊 Send Your Wishes!</h2>
+        <button class="confetti-button" id="confettiButton">
+            <span class="confetti-button-text">Click & Spread Good Luck! ✨📚</span>
+        </button>
+        <div class="wish-streak">
+            <span>Good luck wishes sent:</span>
+            <span class="streak-count" id="wishCount">0</span>
+            <span>🌟</span>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-message font-handwritten">Go rock those exams, Ananya! 💪🌟</div>
+        <div class="footer-text">We know you'll make us proud — just be confident! 💖📚🎉</div>
+        <div class="footer-emojis" id="footerEmojis"></div>
+        <div class="footer-credit">Made with 💖 just for you, Ananya</div>
+    </footer>
+
+    <script>
+    // ========== FLOATING ELEMENTS ==========
+    const floatingEmojis = ["⭐","💖","✨","🌸","💫","🦋","🌟","💝","🎀","🌷","🎈","🚀"];
+    const floatingContainer = document.getElementById('floatingElements');
+    for (let i = 0; i < 18; i++) {
+        const emoji = document.createElement('span');
+        emoji.className = 'floating-emoji';
+        emoji.textContent = floatingEmojis[i % floatingEmojis.length];
+        emoji.style.left = Math.random() * 100 + '%';
+        emoji.style.top = (15 + Math.random() * 70) + '%';
+        emoji.style.fontSize = (1.2 + Math.random() * 1.1) + 'rem';
+        emoji.style.animationDelay = Math.random() * 5 + 's';
+        emoji.style.animationDuration = (6 + Math.random() * 4) + 's';
+        floatingContainer.appendChild(emoji);
+    }
+
+    // ========== ANIMATED HERO TITLE ==========
+    const titleText = "Give It Your Best,";
+    const titleEl = document.getElementById('heroTitle');
+    [...titleText].forEach((char, i) => {
+        if (char === ' ') {
+            const space = document.createElement('span');
+            space.className = 'title-space';
+            titleEl.appendChild(space);
+        } else {
+            const span = document.createElement('span');
+            span.className = 'title-letter';
+            span.textContent = char;
+            span.style.animationDelay = (0.3 + i * 0.07) + 's';
+            titleEl.appendChild(span);
+        }
+    });
+
+    // ========== HERO EMOJIS ==========
+    const heroEmojisContainer = document.getElementById('heroEmojis');
+    ["💖","⭐","🌸","✨","🦋"].forEach((emoji, i) => {
+        const span = document.createElement('span');
+        span.textContent = emoji;
+        span.style.animationDelay = (i * 0.2) + 's';
+        heroEmojisContainer.appendChild(span);
+    });
+
+    // ========== MOOD TRACKER ==========
+    const moodResponses = {
+        nervous: { msg: "It's totally normal to feel nervous! Take 3 deep breaths. You've prepared for this! 🌸", emoji: "🌸" },
+        excited: { msg: "YES! That energy is PERFECT! Channel it into your answers! 🚀", emoji: "🚀" },
+        calm: { msg: "That calm confidence is your superpower! You've got this! 🧘‍♀️", emoji: "🧘‍♀️" },
+        confident: { msg: "THAT'S THE SPIRIT! Go show them what you're made of! 💪⭐", emoji: "💪" },
+        tired: { msg: "Rest is part of the journey too! Take a quick break, then crush it! 💤✨", emoji: "💤" }
+    };
+
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const mood = btn.dataset.mood;
+            const resp = moodResponses[mood];
+            const responseEl = document.getElementById('moodResponse');
+            responseEl.textContent = resp.msg;
+            responseEl.classList.add('visible');
+
+            // mini confetti burst
+            confetti({ particleCount: 30, spread: 60, origin: { y: 0.5 },
+                colors: ['#FFB6D9','#D4BBDD','#B8E6D5','#FFF4B7'] });
+        });
+    });
+
+    // ========== QUOTES CAROUSEL ==========
+    const quotes = [
+        { text: "Trust your preparation. You've worked hard for this!", icon: "📚", bg: "bg-pastel-pink" },
+        { text: "Stay calm, stay focused, and give it your best", icon: "🎯", bg: "bg-pastel-lavender" },
+        { text: "One exam cannot define your brilliance.", icon: "✨", bg: "bg-pastel-mint" },
+        { text: "Take a deep breath. You've got this!", icon: "🌸", bg: "bg-pastel-yellow" },
+        { text: "Effort + Confidence = Success!", icon: "💪", bg: "bg-pastel-peach" },
+        { text: "Read carefully, think clearly, write confidently.", icon: "✍️", bg: "bg-pastel-blue" },
+        { text: "Progress, not perfection!", icon: "🌈", bg: "bg-pastel-pink" },
+        { text: "Believe in yourself the way we believe in you!", icon: "💖", bg: "bg-pastel-lavender" },
+        { text: "Stay positive, work hard, and make it happen.", icon: "🌟", bg: "bg-pastel-mint" },
+        { text: "Your hard work will shine through every answer you write.", icon: "⭐", bg: "bg-pastel-yellow" },
+        { text: "Keep going — you're closer to success than you think!", icon: "🚀", bg: "bg-pastel-peach" },
+        { text: "Exams are temporary, knowledge is forever.", icon: "📖", bg: "bg-pastel-blue" },
+    ];
+
+    const carouselContainer = document.getElementById('quotesCarousel');
+    const dotsContainer = document.getElementById('carouselDots');
+    let currentQuote = 0;
+
+    quotes.forEach((quote, i) => {
+        const card = document.createElement('div');
+        card.className = `quote-card ${quote.bg} ${i === 0 ? 'active' : ''}`;
+        card.innerHTML = `<span class="quote-icon">${quote.icon}</span><p class="quote-text">"${quote.text}"</p>`;
+        // Click to advance
+        card.addEventListener('click', () => {
+            currentQuote = (currentQuote + 1) % quotes.length;
+            showQuote(currentQuote);
+        });
+        carouselContainer.appendChild(card);
+
+        const dot = document.createElement('button');
+        dot.className = `dot ${i === 0 ? 'active' : ''}`;
+        dot.onclick = () => showQuote(i);
+        dotsContainer.appendChild(dot);
+    });
+
+    function showQuote(index) {
+        document.querySelectorAll('.quote-card').forEach((card, i) => card.classList.toggle('active', i === index));
+        document.querySelectorAll('.dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
+        currentQuote = index;
+    }
+
+    setInterval(() => {
+        currentQuote = (currentQuote + 1) % quotes.length;
+        showQuote(currentQuote);
+    }, 4000);
+
+    // ========== SCRATCH CARD ==========
+   const luckyMessages = [
+        { emoji: "💫", msg: "What you believe, you receive. You have already called success into your life!" },
+        { emoji: "🌊", msg: "You are a magnet for good things. Everything you need is flowing toward you!" },
+        { emoji: "💭", msg: "Your thoughts become your reality. You have been thinking greatness — watch it appear!" },
+        { emoji: "🌸", msg: "You attracted this moment. Trust that everything unfolding is meant for you!" },
+        { emoji: "🔑", msg: "Ask. Believe. Receive. You already asked — now just believe and watch it happen!" },
+        { emoji: "💎", msg: "You radiate the energy of someone who wins. The universe always matches your frequency!" },
+        { emoji: "🌀", msg: "Let go of doubt. What is meant for you cannot miss you — it is already on its way!" },
+        { emoji: "☀️", msg: "Gratitude is your superpower. The more you feel it, the more the universe delivers!" },
+    ];
+
+    let currentLucky = Math.floor(Math.random() * luckyMessages.length);
+    let isScratching = false;
+    let scratchProgress = 0;
+
+    function setupScratchCard() {
+        const canvas = document.getElementById('scratchCanvas');
+        const reveal = document.getElementById('scratchReveal');
+        const hint = document.getElementById('scratchHint');
+        const reset = document.getElementById('scratchReset');
+        const msg = luckyMessages[currentLucky];
+
+        reveal.innerHTML = `<span style="font-size:3.5rem">${msg.emoji}</span><span style="font-family:'Caveat',cursive;font-size:1.4rem;color:#4A4A4A;text-align:center;padding:0 1rem">${msg.msg}</span>`;
+
+        const rect = document.getElementById('scratchCard').getBoundingClientRect();
+        canvas.width = canvas.offsetWidth || 600;
+        canvas.height = canvas.offsetHeight || 160;
+
+        const ctx = canvas.getContext('2d');
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        grad.addColorStop(0, '#D4BBDD');
+        grad.addColorStop(0.5, '#FFB6D9');
+        grad.addColorStop(1, '#B4E7F5');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = 'rgba(255,255,255,0.3)';
+        ctx.font = '1.2rem Quicksand';
+        ctx.textAlign = 'center';
+        ctx.fillText('✨ Scratch here for your lucky message! ✨', canvas.width/2, canvas.height/2);
+
+        ctx.globalCompositeOperation = 'destination-out';
+        scratchProgress = 0;
+        isScratching = false;
+        hint.style.display = 'block';
+        reset.style.display = 'none';
+
+        function getPos(e) {
+            const r = canvas.getBoundingClientRect();
+            if (e.touches) return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
+            return { x: e.clientX - r.left, y: e.clientY - r.top };
+        }
+
+        function scratch(e) {
+            if (!isScratching) return;
+            e.preventDefault();
+            const pos = getPos(e);
+            ctx.beginPath();
+            ctx.arc(pos.x, pos.y, 28, 0, Math.PI * 2);
+            ctx.fill();
+            checkProgress(ctx, canvas);
+        }
+
+        canvas.addEventListener('mousedown', (e) => { isScratching = true; scratch(e); });
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('mouseup', () => isScratching = false);
+        canvas.addEventListener('touchstart', (e) => { isScratching = true; scratch(e); }, { passive: false });
+        canvas.addEventListener('touchmove', scratch, { passive: false });
+        canvas.addEventListener('touchend', () => isScratching = false);
+    }
+
+    function checkProgress(ctx, canvas) {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let cleared = 0;
+        for (let i = 3; i < imageData.data.length; i += 4) {
+            if (imageData.data[i] === 0) cleared++;
+        }
+        const percent = cleared / (canvas.width * canvas.height) * 100;
+        if (percent > 50) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('scratchHint').style.display = 'none';
+            document.getElementById('scratchReset').style.display = 'block';
+            confetti({ particleCount: 50, spread: 70, origin: { y: 0.5 },
+                colors: ['#FFB6D9','#D4BBDD','#FFF4B7'] });
+        }
+    }
+
+    document.getElementById('scratchReset').addEventListener('click', () => {
+        currentLucky = (currentLucky + 1) % luckyMessages.length;
+        setupScratchCard();
+    });
+
+    setupScratchCard();
+    window.addEventListener('resize', setupScratchCard);
+
+    // ========== STUDY DICE ==========
+    const diceTips = [
+        { emoji: "1️⃣", tip: "Read the entire question before writing a single word! 📖" },
+        { emoji: "2️⃣", tip: "Start with the questions you're most confident about! ⭐" },
+        { emoji: "3️⃣", tip: "Write neatly — examiners love clean, readable answers! ✍️" },
+        { emoji: "4️⃣", tip: "Check your time — don't spend too long on one question! ⏱️" },
+        { emoji: "5️⃣", tip: "Highlight keywords in your answers to show understanding! 💡" },
+        { emoji: "6️⃣", tip: "Trust yourself — your preparation has brought you here! 💪" },
+    ];
+
+    const diceDisplay = document.getElementById('diceDisplay');
+    const diceResult = document.getElementById('diceResult');
+
+    document.getElementById('diceBtn').addEventListener('click', function() {
+        diceDisplay.classList.add('rolling');
+        this.disabled = true;
+
+        let flicker = 0;
+        const flickerInterval = setInterval(() => {
+            const r = Math.floor(Math.random() * diceTips.length);
+            diceDisplay.textContent = diceTips[r].emoji;
+            flicker++;
+            if (flicker > 8) {
+                clearInterval(flickerInterval);
+                const final = Math.floor(Math.random() * diceTips.length);
+                diceDisplay.textContent = diceTips[final].emoji;
+                diceResult.textContent = diceTips[final].tip;
+                diceDisplay.classList.remove('rolling');
+                this.disabled = false;
+
+                confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 },
+                    colors: ['#B8E6D5','#B4E7F5','#FFB6D9'] });
+            }
+        }, 80);
+    });
+
+    // ========== CONFETTI BUTTON + WISH COUNT ==========
+    let wishCount = 0;
+    const wishCountEl = document.getElementById('wishCount');
+
+    document.getElementById('confettiButton').addEventListener('click', function() {
+        wishCount++;
+        wishCountEl.textContent = wishCount;
+        wishCountEl.style.transform = 'scale(1.4)';
+        setTimeout(() => wishCountEl.style.transform = '', 300);
+        wishCountEl.style.transition = 'transform 0.3s ease';
+
+        const duration = 4000;
+        const animationEnd = Date.now() + duration;
+        const brightColors = ['#FF1493','#FF69B4','#FFB6D9','#FFD700','#FFA500','#00E5FF','#00FFB3','#C084FC','#FF6B6B'];
+
+        const interval = setInterval(() => {
+            const timeLeft = animationEnd - Date.now();
+            if (timeLeft <= 0) {
+                clearInterval(interval);
+                confetti({ particleCount: 300, spread: 200, startVelocity: 45, origin: { x: 0.5, y: 0.5 }, colors: brightColors });
+                return;
+            }
+            const particleCount = 80 * (timeLeft / duration);
+            confetti({ particleCount, angle: 60, spread: 90, origin: { x: 0 }, colors: brightColors });
+            confetti({ particleCount, angle: 120, spread: 90, origin: { x: 1 }, colors: brightColors });
+            confetti({ particleCount: particleCount * 1.2, spread: 140, origin: { x: 0.5, y: 0.5 }, colors: brightColors, startVelocity: 35 });
+        }, 250);
+
+        this.style.transform = 'scale(0.9)';
+        this.style.boxShadow = '0 0 40px #FF69B4';
+        setTimeout(() => { this.style.transform = ''; this.style.boxShadow = ''; }, 200);
+    });
+
+    // ========== FOOTER ==========
+    const footerEmojisContainer = document.getElementById('footerEmojis');
+    ["💝","🌟","🦋","💫"].forEach((emoji, i) => {
+        const span = document.createElement('span');
+        span.textContent = emoji;
+        span.style.animationDelay = (i * 0.15) + 's';
+        footerEmojisContainer.appendChild(span);
+    });
+
+    // ========== INITIAL CONFETTI ==========
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#FFB6D9','#D4BBDD','#B8E6D5','#FFF4B7','#FFDAC1','#B4E7F5']
+            });
+        }, 500);
+    });
+    </script>
+</body>
+</html>
